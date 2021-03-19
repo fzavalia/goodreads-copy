@@ -1,11 +1,10 @@
 $textColor: #382110
 
+.header
+    background-colo: #f4f1ea
+
 @mixin row
     @apply h-12 flex shadow-md items-center
-        
-    
-.header
-    background-color: #f4f1ea
 
 .firstRow
     @include row
@@ -23,3 +22,10 @@ $textColor: #382110
         &:hover
             background-color: $textColor
             @apply text-white
+
+.menu
+    padding: 8px 0
+    color: #333333
+    @apply bg-white shadow-md text-sm flex flex-col
+    > a
+        @apply leading-8 pl-4 hover:underline cursor-pointer

@@ -30,6 +30,16 @@ const Header = () => {
           <div>Community ▾</div>
         </div>
       </header>
+      <div className={styles.menu}>
+        <a>Recommendations</a>
+        <a>Choice Awards</a>
+        <a>Genres</a>
+        <a>Giveaways</a>
+        <a>New Releases</a>
+        <a>Lists</a>
+        <a>Explore</a>
+        <a>News & Interviews</a>
+      </div>
     </>
   );
 };
