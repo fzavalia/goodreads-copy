@@ -11,7 +11,7 @@ const Header = () => {
             src="https://www.goodreads.com/assets/layout/header/icn_nav_search_black.svg"
           />
         </span>
-        <span>
+        <span className="text-center">
           <img
             className="h-7"
             src="https://www.goodreads.com/assets/layout/header/goodreads_logo.svg"
