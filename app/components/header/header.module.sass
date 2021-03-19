@@ -1,0 +1,21 @@
+$textColor: #382110
+    
+.header
+    background-color: #f4f1ea
+
+.firstRow
+    @apply flex w-full h-12 items-center shadow-md
+    > span
+        @apply flex-1
+        > img
+            @apply inline-block cursor-pointer
+
+.secondRow
+    color: $textColor
+    @apply h-12 shadow-md flex items-center
+    > div
+        line-height: 50px
+        @apply flex-1 text-center cursor-pointer
+        &:hover
+            background-color: $textColor
+            @apply text-white
