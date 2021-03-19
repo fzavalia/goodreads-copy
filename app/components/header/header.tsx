@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styles from "./header.module.sass";
 
 const Header = () => {
@@ -30,6 +31,7 @@ const Header = () => {
           <div>Community ▾</div>
         </div>
       </header>
+      <div>foo</div>
       <div className={styles.menu}>
         <a>Recommendations</a>
         <a>Choice Awards</a>

@@ -4,7 +4,8 @@ $textColor: #382110
     background-colo: #f4f1ea
 
 @mixin row
-    @apply h-12 flex shadow-md items-center
+    height: 50px
+    @apply flex shadow-md items-center
 
 .firstRow
     @include row
@@ -26,6 +27,7 @@ $textColor: #382110
 .menu
     padding: 8px 0
     color: #333333
-    @apply bg-white shadow-md text-sm flex flex-col
+    top: 100px
+    @apply bg-white shadow-md text-sm flex flex-col fixed w-full
     > a
         @apply leading-8 pl-4 hover:underline cursor-pointer
