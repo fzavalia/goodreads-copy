@@ -1,10 +1,14 @@
 $textColor: #382110
+
+@mixin row
+    @apply h-12 flex shadow-md items-center
+        
     
 .header
     background-color: #f4f1ea
 
 .firstRow
-    @apply flex w-full h-12 items-center shadow-md
+    @include row
     > span
         @apply flex-1
         > img
@@ -12,7 +16,7 @@ $textColor: #382110
 
 .secondRow
     color: $textColor
-    @apply h-12 shadow-md flex items-center
+    @include row
     > div
         line-height: 50px
         @apply flex-1 text-center cursor-pointer
