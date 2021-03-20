@@ -1,7 +1,24 @@
-import { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./header.module.sass";
 
 const Header = () => {
+  const [showBrowse, setShowBrowse] = useState(false);
+
+  const browseMenuRef = useRef<HTMLDivElement>();
+  const browseRef = useRef<HTMLDivElement>();
+
+  useEffect(() => {
+    const handle = (event) => {
+      if (showBrowse && !browseMenuRef.current.contains(event.target)) {
+        setShowBrowse(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handle);
+
+    return () => document.removeEventListener("mousedown", handle);
+  }, [showBrowse]);
+
   return (
     <>
       <header className={styles.header}>
@@ -27,21 +44,24 @@ const Header = () => {
         </div>
         <div className={styles.secondRow}>
           <div>My Books</div>
-          <div>Browse ▾</div>
+          <div ref={browseRef} onClick={() => setShowBrowse(!showBrowse)}>
+            Browse ▾
+          </div>
           <div>Community ▾</div>
         </div>
       </header>
-      <div>foo</div>
-      <div className={styles.menu}>
-        <a>Recommendations</a>
-        <a>Choice Awards</a>
-        <a>Genres</a>
-        <a>Giveaways</a>
-        <a>New Releases</a>
-        <a>Lists</a>
-        <a>Explore</a>
-        <a>News & Interviews</a>
-      </div>
+      {showBrowse && (
+        <div ref={browseMenuRef} className={styles.menu}>
+          <a>Recommendations</a>
+          <a>Choice Awards</a>
+          <a>Genres</a>
+          <a>Giveaways</a>
+          <a>New Releases</a>
+          <a>Lists</a>
+          <a>Explore</a>
+          <a>News & Interviews</a>
+        </div>
+      )}
     </>
   );
 };
