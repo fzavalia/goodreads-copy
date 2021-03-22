@@ -1,47 +1,37 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import styles from "./header.module.sass";
+import Menu from "../menu/menu";
+
+const browseItems = [
+  "Recommendations",
+  "Choice Awards",
+  "Genres",
+  "Giveaways",
+  "New Releases",
+  "Lists",
+  "Explore",
+  "Lists",
+  "News & Interviews",
+];
+
+const communityItems = [
+  "Groups",
+  "Discussions",
+  "Quotes",
+  "Ask the Author",
+  "Trivia",
+  "Quizes",
+  "Creative Writing",
+  "People",
+  "Events",
+];
 
 const Header = () => {
   const [showBrowse, setShowBrowse] = useState(false);
   const [showCommunity, setShowCommunity] = useState(false);
 
-  const browseMenuRef = useRef<HTMLDivElement>();
   const browseRef = useRef<HTMLDivElement>();
-
-  const communityMenuRef = useRef<HTMLDivElement>();
   const communityRef = useRef<HTMLDivElement>();
-
-  useEffect(() => {
-    const handle = (event) => {
-      if (
-        showBrowse &&
-        !browseMenuRef.current.contains(event.target) &&
-        !browseRef.current.contains(event.target)
-      ) {
-        setShowBrowse(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handle);
-
-    return () => document.removeEventListener("mousedown", handle);
-  }, [showBrowse]);
-
-  useEffect(() => {
-    const handle = (event) => {
-      if (
-        showCommunity &&
-        !communityMenuRef.current.contains(event.target) &&
-        !communityRef.current.contains(event.target)
-      ) {
-        setShowCommunity(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handle);
-
-    return () => document.removeEventListener("mousedown", handle);
-  }, [showCommunity]);
 
   return (
     <>
@@ -79,31 +69,18 @@ const Header = () => {
           </div>
         </div>
       </header>
-      {showBrowse && (
-        <div ref={browseMenuRef} className={styles.menu}>
-          <a>Recommendations</a>
-          <a>Choice Awards</a>
-          <a>Genres</a>
-          <a>Giveaways</a>
-          <a>New Releases</a>
-          <a>Lists</a>
-          <a>Explore</a>
-          <a>News & Interviews</a>
-        </div>
-      )}
-      {showCommunity && (
-        <div ref={communityMenuRef} className={styles.menu}>
-          <a>Groupd</a>
-          <a>Discussions</a>
-          <a>Quotes</a>
-          <a>Ask the Author</a>
-          <a>Trivia</a>
-          <a>Quizes</a>
-          <a>Creative Writing</a>
-          <a>People</a>
-          <a>Events</a>
-        </div>
-      )}
+      <Menu
+        show={showBrowse}
+        button={browseRef}
+        onClose={() => setShowBrowse(false)}
+        items={browseItems}
+      />
+      <Menu
+        show={showCommunity}
+        button={communityRef}
+        onClose={() => setShowCommunity(false)}
+        items={communityItems}
+      />
     </>
   );
 };
