@@ -12,7 +12,7 @@ const Menu = ({ show, button, items, onClose }: MenuProps) => {
   const ref = useRef<HTMLDivElement>();
 
   useEffect(() => {
-    const handle = (event) => {
+    const handle = (event: any) => {
       if (
         show &&
         !ref.current.contains(event.target) &&
