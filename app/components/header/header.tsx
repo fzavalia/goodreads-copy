@@ -3,13 +3,21 @@ import styles from "./header.module.sass";
 
 const Header = () => {
   const [showBrowse, setShowBrowse] = useState(false);
+  const [showCommunity, setShowCommunity] = useState(false);
 
   const browseMenuRef = useRef<HTMLDivElement>();
   const browseRef = useRef<HTMLDivElement>();
 
+  const communityMenuRef = useRef<HTMLDivElement>();
+  const communityRef = useRef<HTMLDivElement>();
+
   useEffect(() => {
     const handle = (event) => {
-      if (showBrowse && !browseMenuRef.current.contains(event.target)) {
+      if (
+        showBrowse &&
+        !browseMenuRef.current.contains(event.target) &&
+        !browseRef.current.contains(event.target)
+      ) {
         setShowBrowse(false);
       }
     };
@@ -18,6 +26,22 @@ const Header = () => {
 
     return () => document.removeEventListener("mousedown", handle);
   }, [showBrowse]);
+
+  useEffect(() => {
+    const handle = (event) => {
+      if (
+        showCommunity &&
+        !communityMenuRef.current.contains(event.target) &&
+        !communityRef.current.contains(event.target)
+      ) {
+        setShowCommunity(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handle);
+
+    return () => document.removeEventListener("mousedown", handle);
+  }, [showCommunity]);
 
   return (
     <>
@@ -47,7 +71,12 @@ const Header = () => {
           <div ref={browseRef} onClick={() => setShowBrowse(!showBrowse)}>
             Browse ▾
           </div>
-          <div>Community ▾</div>
+          <div
+            ref={communityRef}
+            onClick={() => setShowCommunity(!showCommunity)}
+          >
+            Community ▾
+          </div>
         </div>
       </header>
       {showBrowse && (
@@ -60,6 +89,19 @@ const Header = () => {
           <a>Lists</a>
           <a>Explore</a>
           <a>News & Interviews</a>
+        </div>
+      )}
+      {showCommunity && (
+        <div ref={communityMenuRef} className={styles.menu}>
+          <a>Groupd</a>
+          <a>Discussions</a>
+          <a>Quotes</a>
+          <a>Ask the Author</a>
+          <a>Trivia</a>
+          <a>Quizes</a>
+          <a>Creative Writing</a>
+          <a>People</a>
+          <a>Events</a>
         </div>
       )}
     </>
