@@ -29,6 +29,7 @@ const communityItems = [
 const Header = () => {
   const [showBrowse, setShowBrowse] = useState(false);
   const [showCommunity, setShowCommunity] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
 
   const browseRef = useRef<HTMLDivElement>();
   const communityRef = useRef<HTMLDivElement>();
@@ -41,6 +42,7 @@ const Header = () => {
             <img
               className="h-5 ml-4 w-6"
               src="https://www.goodreads.com/assets/layout/header/icn_nav_search_black.svg"
+              onClick={() => setShowSearch(!showSearch)}
             />
           </span>
           <span className="text-center">
@@ -56,22 +58,26 @@ const Header = () => {
             />
           </span>
         </div>
-        <div className={styles.secondRow}>
-          <div>My Books</div>
-          <div ref={browseRef} onClick={() => setShowBrowse(!showBrowse)}>
-            Browse ▾
+        {!showSearch && (
+          <div className={styles.secondRow}>
+            <div>My Books</div>
+            <div ref={browseRef} onClick={() => setShowBrowse(!showBrowse)}>
+              Browse ▾
+            </div>
+            <div
+              ref={communityRef}
+              onClick={() => setShowCommunity(!showCommunity)}
+            >
+              Community ▾
+            </div>
           </div>
-          <div
-            ref={communityRef}
-            onClick={() => setShowCommunity(!showCommunity)}
-          >
-            Community ▾
+        )}
+        {showSearch && (
+          <div className={styles.search}>
+            <input placeholder="Search books"></input>
+            <button onClick={() => setShowSearch(false)}>Cancel</button>
           </div>
-        </div>
-        <div className={styles.search}>
-          <input placeholder="Search books"></input>
-          <button>Cancel</button>
-        </div>
+        )}
       </header>
       <Menu
         show={showBrowse}
