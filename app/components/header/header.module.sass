@@ -1,7 +1,8 @@
 $textColor: #382110
+$bgColor: #f4f1ea
 
 .header
-    background-color: #f4f1ea
+    background-color: $bgColor
 
 @mixin row
     height: 50px
@@ -23,3 +24,16 @@ $textColor: #382110
         &:hover
             background-color: $textColor
             @apply text-white
+
+.search
+    top: 52px
+    height: 48px
+    background-color: $bgColor
+    @apply fixed w-full flex
+    > input
+        border: #DCD6CC 1px solid
+        color: $textColor
+        @apply flex-1 w-full pl-2 m-2 mr-0
+    > button
+        color: #00635D
+        @apply w-16 hover:underline cursor-pointer text-sm

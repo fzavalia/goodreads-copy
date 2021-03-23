@@ -68,6 +68,10 @@ const Header = () => {
             Community ▾
           </div>
         </div>
+        <div className={styles.search}>
+          <input placeholder="Search books"></input>
+          <button>Cancel</button>
+        </div>
       </header>
       <Menu
         show={showBrowse}
